@@ -5,13 +5,15 @@ const jwtSecret = process.env.JWT_SECRET;
 const tokenConfig = { expiresIn: '7d' };
 
 const createUser = async (req, res) => {
-    const user = await loginService.createUser(req.body);
-    if (!user) {
-       return res.status(200).json({ message: 'User already registered',
-});
+    try {
+        const { displayName, email, password, image } = req.body;
+        await loginService.createUser({ displayName, email, password, image });
+           const token = jwt.sign({ email: req.body.email }, jwtSecret, tokenConfig);
+          res.status(201).json({ token });
+    } catch (error) {
+        return res.status(409).json({ message: 'User already registered',
+    });
     }
-    const token = jwt.sign({ email: req.body.email }, jwtSecret, tokenConfig);
-   res.status(200).json({ token });
 };
 
 module.exports = {

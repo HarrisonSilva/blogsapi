@@ -5,13 +5,13 @@ const userDb = (email) => {
     return getUsers;
 };
 
-const createUser = async (register) => {
-    const user = await User.findOne({ where: { email: register.email } });
-    if (!user) {
-        const result = await User.create(register);
-        return result;
+const createUser = async ({ displayName, email, password, image }) => {
+    const user = await User.findOne({ where: { email } });
+    if (user) {
+        throw new Error('User already registered');
     }
-    return null;
+    const result = await User.create({ displayName, email, password, image });
+    return result;
 };
 
 module.exports = {
