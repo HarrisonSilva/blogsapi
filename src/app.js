@@ -26,6 +26,8 @@ userMiddleware.validatePassword,
 );
 
 app.get('/user', tokenMiddleware.validateToken, userController.getUsers);
+
+app.get('/user/:id', tokenMiddleware.validateToken, userController.getUserId);
 // ...
 
 // É importante exportar a constante `app`,
