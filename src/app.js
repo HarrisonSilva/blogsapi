@@ -30,6 +30,8 @@ app.get('/user', tokenMiddleware.validateToken, userController.getUsers);
 app.get('/user/:id', tokenMiddleware.validateToken, userController.getUserId);
 
 app.post('/categories', tokenMiddleware.validateToken, userController.createCategories);
+
+app.get('/categories', tokenMiddleware.validateToken, userController.getCategories);
 // ...
 
 // É importante exportar a constante `app`,

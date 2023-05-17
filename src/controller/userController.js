@@ -41,9 +41,15 @@ const createCategories = async (req, res) => {
     }
 };
 
+const getCategories = async (_req, res) => {
+    const categories = await loginService.getCategories();
+    return res.status(200).json(categories);
+};
+
 module.exports = {
     createUser,
     getUsers,
     getUserId,
     createCategories,
+    getCategories,
 };
