@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Category } = require('../models');
 
 const userDb = (email) => {
     const getUsers = User.findOne({ where: { email } });
@@ -28,9 +28,18 @@ const getUsersId = async (id) => {
     return userId;
 };
 
+const createCategory = async (name) => {
+    const categories = await Category.create({ name });
+    if (!name) {
+        throw new Error('"name" is required');
+    }
+    return categories;
+};
+
 module.exports = {
     userDb,
     createUser,
     getUsers,
     getUsersId,
+    createCategory,
 };

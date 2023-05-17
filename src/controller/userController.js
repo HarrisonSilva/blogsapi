@@ -31,8 +31,19 @@ const getUserId = async (req, res) => {
     }
 };
 
+const createCategories = async (req, res) => {
+    try {
+        const { name } = req.body;
+        const addCategory = await loginService.createCategory(name);
+        res.status(201).json(addCategory);
+    } catch (error) {
+        res.status(400).json({ message: '"name" is required' });
+    }
+};
+
 module.exports = {
     createUser,
     getUsers,
     getUserId,
+    createCategories,
 };
