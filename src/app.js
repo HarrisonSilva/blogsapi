@@ -3,6 +3,7 @@ const controllerLogin = require('./controller/loginController');
 const middlewareLogin = require('./middlewares/loginMIddleware');
 const userController = require('./controller/userController');
 const userMiddleware = require('./middlewares/userMiddleware');
+const tokenMiddleware = require('./middlewares/tokenMiddleware');
 // ...
 
 const app = express();
@@ -23,6 +24,8 @@ userMiddleware.validatePassword,
  userMiddleware.validateEmail,
     userController.createUser,
 );
+
+app.get('/user', tokenMiddleware.validateToken, userController.getUsers);
 // ...
 
 // É importante exportar a constante `app`,
