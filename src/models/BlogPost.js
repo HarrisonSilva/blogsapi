@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes   ) => {
+module.exports = (sequelize, DataTypes) => {
     const BlogPost = sequelize.define('BlogPost', {
         id: {
             primaryKey: true,
