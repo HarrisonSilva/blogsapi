@@ -51,12 +51,12 @@ const addPost = async (req, res) => {
         const { title, content, categoryIds } = req.body;
         const { userId } = req.token;
         const createPost = await loginService.addPost({ title, content, categoryIds, userId });
-        if (createPost) {
+     /*    if (createPost) {
             throw Error;
-        }
+        } */
         return res.status(201).json(createPost);
     } catch (error) {
-        return res.status(400).json({ message: 'one or more "categoryIds" not found' });
+        return res.status(400).json({ message: error.message });
     }
 };
 

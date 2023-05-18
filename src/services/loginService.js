@@ -46,13 +46,11 @@ const addPost = async ({ title, content, categoryIds, userId }) => {
     const findById = categories.map((item) => item.id);
     const getIds = categoryIds.every((item) => findById.includes(item));
     if (!getIds) {
-        return {
-            message: 'one or more "categoryIds" not found',
-        };
+        throw new Error('one or more "categoryIds" not found');
     }
-    const post = await BlogPost.create({ title, content, categoryIds, userId });
+    const post = await BlogPost.create({ title, content, userId });
     await Promise.all(categoryIds.map((item) => 
-    PostCategory.create({ postId: post, categoryId: item })));
+    PostCategory.create({ postId: post.dataValues.id, categoryId: item })));
     return post;
 };
 

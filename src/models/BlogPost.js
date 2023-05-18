@@ -11,17 +11,19 @@ module.exports = (sequelize, DataTypes) => {
         content: {
             type: DataTypes.STRING,
         },
-        user_id: {
+        userId: {
             type: DataTypes.INTEGER,
         },
         published: {
             type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW
           },
           updated: {
             type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW,
           }
     }, {
-        undescored: true,
+        underscored: true,
         timestamps: false,
         tableName: 'blog_posts',
     });
