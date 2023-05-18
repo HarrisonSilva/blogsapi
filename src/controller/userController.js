@@ -46,10 +46,25 @@ const getCategories = async (_req, res) => {
     return res.status(200).json(categories);
 };
 
+const addPost = async (req, res) => {
+    try {
+        const { title, content, categoryIds } = req.body;
+        const { userId } = req.token;
+        const createPost = await loginService.addPost({ title, content, categoryIds, userId });
+        if (createPost) {
+            throw Error;
+        }
+        return res.status(201).json(createPost);
+    } catch (error) {
+        return res.status(400).json({ message: 'one or more "categoryIds" not found' });
+    }
+};
+
 module.exports = {
     createUser,
     getUsers,
     getUserId,
     createCategories,
     getCategories,
+    addPost,
 };

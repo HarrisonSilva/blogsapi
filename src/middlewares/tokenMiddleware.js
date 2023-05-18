@@ -11,7 +11,6 @@ const validateToken = (req, res, next) => {
     }
     try {
         const token = jwt.verify(authorization, jwtSecret);
-        console.log(token);
         req.token = token;
    } catch (error) {
        return res.status(401).json({

@@ -1,4 +1,4 @@
-const { User, Category } = require('../models');
+const { User, Category, BlogPost, PostCategory } = require('../models');
 
 const userDb = (email) => {
     const getUsers = User.findOne({ where: { email } });
@@ -41,6 +41,21 @@ const getCategories = async () => {
     return categories;
 };
 
+const addPost = async ({ title, content, categoryIds, userId }) => {
+    const categories = await getCategories();
+    const findById = categories.map((item) => item.id);
+    const getIds = categoryIds.every((item) => findById.includes(item));
+    if (!getIds) {
+        return {
+            message: 'one or more "categoryIds" not found',
+        };
+    }
+    const post = await BlogPost.create({ title, content, categoryIds, userId });
+    await Promise.all(categoryIds.map((item) => 
+    PostCategory.create({ postId: post, categoryId: item })));
+    return post;
+};
+
 module.exports = {
     userDb,
     createUser,
@@ -48,4 +63,5 @@ module.exports = {
     getUsersId,
     createCategory,
     getCategories,
+    addPost,
 };
