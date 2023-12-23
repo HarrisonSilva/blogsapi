@@ -1,10 +1,3 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+# Blogs Api
+
+Este projeto envolve o desenvolvimento de uma aplicação em Node.js para a criação de um blog, incluindo uma API e um banco de dados. O objetivo principal é implementar as operações CRUD (Create, Read, Update, Delete) para posts, utilizando o pacote Sequelize para interação com o banco de dados.
